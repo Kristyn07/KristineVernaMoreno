@@ -1,0 +1,189 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+    /*ColorScheme*/
+    --bg-light: #D3D0D0; /* Light mode background color */
+    --text-light: #000000; /* Light mode text color */
+    --bg-dark: #212225; /* Dark mode background color */
+    --text-dark: #FFFFFF; /* Dark mode text color */
+    --header-bg: #FFFFFF; /* Default header background color */
+    --header-bg-dark: rgba(27, 29, 33, 0.8); /* 80% opacity */ /* Dark mode header background color */
+    --mode-light: url('light.jpg');
+    --mode-dark: url('dark.jpg');
+}
+
+
+
+/* Default styles for both light and dark modes */
+body {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    
+}
+
+/*header*/
+/*Desktop Header*/
+header {
+    height: 60px;
+    width: 100vw;
+    background-color: var(--header-bg);
+
+}
+.nav-button{
+    display: inline-flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 500;
+    font-size: 11pt;
+    
+}
+/*Mobile Header*/
+@media (max-width: 768px) {
+    .nav-button {
+        display: none;
+    }
+    .mode{
+        display: none;
+    }
+
+    .nav{
+        width: 30%;
+        height: 60%;
+    }
+        .mobile-nav{
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            }
+            .nav-box{
+                width: 100%;
+                height: 100%;
+                background-color: var(--text-dark);
+                margin: 3px 0;
+            }
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--bg-dark);
+        color: var(--text-dark);
+    }
+
+    header {
+        background-color: var(--header-bg-dark);
+        color: var(--text-dark);
+    }
+    
+
+}
+
+/*LayoutDesign*/
+.horizontal-flex-layout{
+    height: 100%;
+    display: flex;
+}
+/*Division / Container will remove once done*/
+.content{
+    width: 100%;
+    height: 100%;
+    /*border: 1px solid powderblue;*/
+
+}
+/*DO NOT EDIT*/
+.logo{
+    width: 30%;
+    display: flex;
+    align-items: center; 
+}
+.logo img {
+    width: 155.7px;
+    height: 38.7px;
+    padding: 0 5px ;
+}
+.nav-button-layout{
+    width: 40%;
+}
+.color-mode{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0 15px;
+}
+.mode {
+    width: 33px;
+    height: 33px;
+    position: relative;
+    
+}
+
+.mode-container {
+    position: relative;
+    width: 100%; /* Adjusted for the border and mode container size */
+    height: 100%; /* Adjusted for the border and mode container size */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: green;
+}
+
+.moon {
+    
+}
+
+.sun-circle {
+    width: 40%; /* Adjusted for the sun circle's size */
+    height: 40%; /* Adjusted for the sun circle's size */
+    border: 2px solid rgb(255, 255, 255); /* White border for sun's circle */
+    border-radius: 50%;
+    position: absolute;
+    justify-self: center;
+    align-self: center;
+}
+.sun-ray-rotation{
+    position: absolute;
+    width: 100%; /* Adjusted for the border and mode container size */
+    height: 100%; /* Adjusted for the border and mode container size */
+    border-radius: 50%;
+    display: flex;
+    padding: 15%;
+}
+    .sun-ray-rotation:nth-child(2){
+        transform:rotate(45deg); /* Rotate the entire sun ray rotation */
+    }
+    .sun-ray-rotation:nth-child(3){
+    transform:rotate(90deg); /* Rotate the entire sun ray rotation */
+    }
+    .sun-ray-rotation:nth-child(4){
+        transform:rotate(135deg); /* Rotate the entire sun ray rotation */
+    }
+    .sun-ray-rotation:nth-child(5){
+    transform:rotate(180deg); /* Rotate the entire sun ray rotation */
+    }
+    .sun-ray-rotation:nth-child(6){
+        transform:rotate(225deg); /* Rotate the entire sun ray rotation */
+    }
+    .sun-ray-rotation:nth-child(7){
+    transform: rotate(270deg); /* Rotate the entire sun ray rotation */
+    }
+    .sun-ray-rotation:nth-child(8){
+        transform:rotate(315deg); /* Rotate the entire sun ray rotation */
+    }
+    .sun-ray-rotation:nth-child(9){
+    transform:rotate(360deg); /* Rotate the entire sun ray rotation */
+    }
+
+        .sun-ray {
+            width: 3px; /* Adjust width of rays */
+            height: 2px; /* Adjust height of rays */
+            background-color: white;
+            align-self: center;
+        }
