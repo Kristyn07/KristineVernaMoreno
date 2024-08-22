@@ -8,32 +8,82 @@
 :root {
     /*ColorScheme*/
     --bg-light: #D3D0D0; /* Light mode background color */
-    --text-light: #000000; /* Light mode text color */
+    --text-light: #000000; /* Light mode text color "BLACK"*/
     --bg-dark: #212225; /* Dark mode background color */
     --text-dark: #FFFFFF; /* Dark mode text color */
     --header-bg: #FFFFFF; /* Default header background color */
     --header-bg-dark: rgba(27, 29, 33, 0.8); /* 80% opacity */ /* Dark mode header background color */
     --mode-light: url('light.jpg');
     --mode-dark: url('dark.jpg');
+    --scrollbar-color: #C762F6;
+    --purple-color: #C762F6;
+    --blue-color: #00FFFF;
 }
 
-
+@font-face {
+    font-family: 'SourceCodePro_Regular';
+    src: url('/font/Source_Code_Pro/static/SourceCodePro-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SourceCodePro_Black';
+    src: url('/font/Source_Code_Pro/static/SourceCodePro-Black.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SourceCodePro_SemiBold';
+    src: url('/font/Source_Code_Pro/static/SourceCodePro-SemiBold.ttf') format('truetype');  
+}
+@font-face {
+    font-family: 'SourceCodePro_ExtraBold';
+    src: url('/font/Source_Code_Pro/static/SourceCodePro-ExtraBold.ttf') format('truetype');
+} 
 
 /* Default styles for both light and dark modes */
 body {
     background-color: var(--bg-light);
     color: var(--text-light);
-    
+    overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 
 /*header*/
 /*Desktop Header*/
 header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
     height: 60px;
     width: 100vw;
     background-color: var(--header-bg);
-
+    z-index: 1;
 }
+
+footer {
+    width: 100vw;
+    height: 120px;
+    border: 2px red solid ;
+    z-index: 1;
+    
+}
+
+a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent */
+}
+button{
+    /* Resetting all default styles */
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    cursor: pointer;
+    outline: none; /* Ensure no outline when focused */
+    /* Optionally, add more specific styles as needed */
+}
+
 .nav-button{
     display: inline-flex; /* Use flexbox */
     justify-content: center; /* Center horizontally */
@@ -43,46 +93,29 @@ header {
     font-size: 11pt;
     
 }
-/*Mobile Header*/
-@media (max-width: 768px) {
-    .nav-button {
-        display: none;
-    }
-    .mode{
-        display: none;
-    }
 
-    .nav{
-        width: 30%;
-        height: 60%;
-    }
-        .mobile-nav{
-            display: flex;
-            height: 100%;
-            flex-direction: column;
-            }
-            .nav-box{
-                width: 100%;
-                height: 100%;
-                background-color: var(--text-dark);
-                margin: 3px 0;
-            }
+.content .nav-button a:hover {
+    color: var(--scrollbar-color); /* Change text color to blue on hover */
 }
 
-/* Dark mode styles */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: var(--bg-dark);
-        color: var(--text-dark);
-    }
+.content .nav-button a::after {
+    content: ''; /* Create pseudo-element for underline */
+    position: absolute; /* Position relative to anchor */
+    width: 100%; /* Full width of anchor */
+    height: 2px; /* Underline height */
+    bottom: -1px; /* Position just below text */
+    left: 0; /* Start from the left */
+    background-color: transparent; /* Initially transparent */
+    transition: background-color 0.3s ease; /* Smooth transition for color change */
+}
 
-    header {
-        background-color: var(--header-bg-dark);
-        color: var(--text-dark);
-    }
+.content .nav-button a:hover::after {
+    background-color: var(--scrollbar-color); /* Change underline color on hover */
     
-
 }
+
+
+
 
 /*LayoutDesign*/
 .horizontal-flex-layout{
@@ -132,11 +165,7 @@ header {
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color: green;
-}
-
-.moon {
-    
+    /* background-color: green; */
 }
 
 .sun-circle {
@@ -187,3 +216,394 @@ header {
             background-color: white;
             align-self: center;
         }
+
+/*Section*/
+
+/*Custom Scrool Bar*/
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-light);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+}
+
+/*HOME*/
+.home{
+    padding:9%;
+    height: 100vh;
+    width: 100vw;
+    background-image:url("./images/me.png");
+    background-size:50% auto ; /* Cover the entire background area */
+    background-repeat: no-repeat;
+    background-position: bottom right; /* Center the background image */
+    z-index: 0; /* Set a low z-index to place it behind the header */
+}
+
+.introductionContainer {
+    flex-direction: column; 
+    justify-content: center; 
+}
+    .hi p{
+        font-family: 'SourceCodePro_SemiBold';
+        font-size: 30px;
+        line-height: 50px;
+    }
+    .name p{
+        font-family: 'SourceCodePro_Black';
+        color: var(--blue-color);
+        font-size: 60px;
+        line-height: 70px;
+    }
+    .jobPosition p{
+        font-family: 'SourceCodePro_Black';
+        color: var(--scrollbar-color);
+        font-size: 40px;
+        line-height: 55px;
+    }
+    .introQoutes p{
+        font-family: 'SourceCodePro_SemiBold';
+        margin: 10px 0;
+        font: weight 600px;
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+/*ABOUT*/
+.about{
+    padding:5% 9% ;
+    width: 100vw;
+}
+.aboutContainer{
+    background-color:#1B1D21;
+    border-radius: 30px;
+    padding: 2%;
+    width: 100%;
+    align-self: center;
+    justify-content: center; 
+}
+.aboutContainer p{
+    color: white;
+    font-family: 'SourceCodePro_SemiBold';
+    font-size: 15px;
+}
+.getInTouch {
+    background-color: var(--purple-color);
+    padding: 5px 10px ; 
+    text-align: center;
+    font-size: 15px; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+/* Button hover effect */
+.getInTouch:hover {
+    background-color: var(--blue-color);
+    color: black;
+    transform: scale(1.05); /* Slightly scale up on hover */
+}
+
+/* Button focus effect */
+.getInTouch:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5); /* Blue shadow for focus */
+}
+/*SKILL*/
+.skill{
+    width: 100vw;
+    background-color: #121315;
+    height: auto;
+}
+.skillPadding{
+    padding: 3%;
+}
+    .programmingLanguage{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        margin: 2%;
+        
+    }
+        .progContainer{
+            margin: 10px;
+            width: 200px;
+            height: 180px;
+            background-color: #212225;
+            border-radius: 30px;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .progImageContainer{
+            width: 140px;
+            height: 140px; 
+        }
+        .progImageContainer img{
+            padding: 5px 0px;
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+        .progName{
+            font-family: 'SourceCodePro_ExtraBold';
+            font-size: 20px;
+            color: var(--purple-color);
+        }
+    .softwareProficiency{
+        display: flex;
+        padding: 3%;
+        justify-content: space-evenly;
+    }
+        .softwareColumn{
+           padding: 0 2% 2% ;
+           width: 50%;
+           height: 100%;
+        }
+        .softwareSubTitle{
+            display: flex;
+        }
+            .subTitleHLine{
+                width: 15px;
+                height: 25px;
+                margin: 0 0 4% 0;
+                border-left: var(--purple-color) 3px solid;
+            }
+            .softwareSubTitle p{
+                font-family: 'SourceCodePro_ExtraBold';
+                font-size: 17.5px;
+                color: white;
+                
+            }
+            .softwareContent{
+                display: flex; 
+                flex-direction: row; 
+        
+            }
+            .software{
+                height: 180px;
+                width: 45%;
+                margin: 0 0 4% 5%;
+                border-left: var(--blue-color) 3px solid;
+                display: flex; 
+                flex-direction: column; 
+                align-items: center; 
+                justify-content: center; 
+            }      
+                .software img{
+                    padding: 5px 0px;
+                    height: 90%;
+                    width: 50%;
+                    object-fit: contain;
+                }
+                .software p{
+                    font-family: 'SourceCodePro_ExtraBold';
+                    font-size: 15px;
+                    color: var(--blue-color);
+                }
+                .graphicWeb{
+                    height: 480px; width: 100%;
+                }
+        .graphicDesignWebDev{
+            margin-left: 25px;
+            width: 100% - 25px;
+            border-radius: 30px;
+            background-color: #212225;
+            flex-wrap: spa
+        }
+        .graphicDesignWebDev .progContainer{
+            height: 150px;
+            width: 140px;
+            text-align: center;
+        }
+        .graphicDesignWebDev .progImageContainer{
+            height: 100px;
+            width: 100px;
+        }     
+/*PROJECT*/
+.project{
+    height:100vh;
+    border: 2px  blue solid;
+    overflow-y: auto;
+    width: 100vw;
+}
+
+/*CONTACT*/
+.contact{
+    height:100vh;
+    border: 2px  green solid;
+    overflow-y: auto;
+    width: 100vw;
+}
+
+
+.subTitle{
+    display: flex;
+}
+.subLine{
+    clip-path: polygon(
+        0% 0%,       /* Top-left corner */
+        100% 0%,     /* Top-right corner */
+        50% 50%,    /* Mid-right edge */
+        50% 50%,     /* Start of diagonal cutout */
+        100% 100%,    /* Bottom center */
+        0% 100%      /* End of diagonal cutout */
+    );
+    
+    width: 50px;
+    height: 40px;
+    background-color: #D9D9D9;
+
+}
+.subTitle p{
+    color: white;
+    font-family: 'SourceCodePro_ExtraBold';
+    font-size: 20px;
+    text-align: center;
+    align-content: center;
+}
+
+/*On Right*/
+.onRight{
+    display: flex;
+    flex-direction: column; /* Align items vertically (line above text) */
+    align-items: flex-end; /* Aligns all content to the right */
+}
+.onRight .line{
+    transform: scaleX(-1);
+}
+
+/*New Line*/
+.newLine{
+    width: 100%;
+    height: 15px;
+}
+/*Title with animation*/
+.titleSection h6{
+    color: var(--blue-color);
+    font-family: 'SourceCodePro_SemiBold';
+    font-size: 25px;
+}
+.titleSection p{
+    color: white;
+    font-family: 'SourceCodePro_SemiBold';
+    font-size: 15px;
+}
+.line{
+    width: 0px;
+    height: 6px;
+    background-color: var(--purple-color);
+    clip-path: polygon(0% 0%, 20% 30%, 100% 0%, 100% 0%, 0% 100%);
+
+}
+.animate-line {
+    animation: drawLine 2s forwards;
+}
+
+@keyframes drawLine {
+    from {
+        width: 0;
+    }
+    to {
+        width: 280px; /* End with full width */
+    }
+}
+/*Mobile*/
+@media (max-width: 800px) {
+    .nav-button {
+        display: none;
+    }
+    .mode{
+        display: none;
+    }
+
+    .nav{
+        width: 30%;
+        height: 60%;
+    }
+        .mobile-nav{
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            }
+
+        
+            .nav-box{
+                width: 100%;
+                height: 100%;
+                background-color: var(--text-light);
+                margin: 3px 0;
+            }
+        .introductionContainer{
+                margin: 20px 0 0 0;
+            }
+    /*Home*/
+    .home{
+        background-size:150% ; /* Cover the entire background area */
+        background-position: bottom center;
+    }
+    .hi p{
+        font-size: 20px;
+        line-height: 50px;
+    }
+    .name p{
+        font-size: 40px;
+        line-height: 50px;
+    }
+    .jobPosition p{
+        font-size: 30px;
+        line-height: 40px;
+    }
+    .introQoutes p{
+        margin: 10px 0;
+        font-size: 18px;
+        line-height: 30px;
+    }       
+
+    /*Skills*/
+    .progContainer{
+        width: 150px;
+        height: 130px;
+        border-radius: 20px;
+    }
+    .progImageContainer{
+        width: 90px;
+        height: 90px; 
+    }
+    .progName{
+    font-size: 15px;
+    }
+    
+    .softwareColumn{
+        width: 100%;
+        height: 100%;
+     }
+    .softwareProficiency{
+        flex-direction:column;
+    }
+    .softwareProficiency .progContainer{
+        width: 110px;
+    }
+}
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--bg-dark);
+        color: var(--text-dark);
+    }
+
+    header {
+        background-color: var(--header-bg-dark);
+        color: var(--text-dark);
+    }
+    .nav-box {
+        background-color: var(--text-dark);
+    }
+    ::-webkit-scrollbar-track {
+        background: var(--bg-dark);
+    }
+
+}
