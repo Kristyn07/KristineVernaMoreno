@@ -1,12 +1,26 @@
-/*Division / Container will remove once done*/
-
-
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-/*#region FONT STYLE*/
+
+
+:root {
+    /*ColorScheme*/
+    --bg-light: #D3D0D0; /* Light mode background color */
+    --text-light: #000000; /* Light mode text color "BLACK"*/
+    --bg-dark: #212225; /* Dark mode background color */
+    --text-dark: #FFFFFF; /* Dark mode text color */
+    --header-bg: #FFFFFF; /* Default header background color */
+    --header-bg-dark: rgba(27, 29, 33, 0.8); /* 80% opacity */ /* Dark mode header background color */
+    --mode-light: url('light.jpg');
+    --mode-dark: url('dark.jpg');
+    --scrollbar-color: #C762F6;
+    --purple-color: #C762F6;
+    --blue-color: #00FFFF;
+    --skills-bg-color:#F5F5F5 ; 
+}
+
 @font-face {
     font-family: 'SourceCodePro_Regular';
     src: url('/font/Source_Code_Pro/static/SourceCodePro-Regular.ttf') format('truetype');
@@ -23,40 +37,16 @@
     font-family: 'SourceCodePro_ExtraBold';
     src: url('/font/Source_Code_Pro/static/SourceCodePro-ExtraBold.ttf') format('truetype');
 } 
-/*#endregion*/
 
-:root {
-
-    /*#region ColorScheme*/
-        /*Light Mode Config*/
-        --main-bg-for-light: #D3D0D0;
-        --main-text-color-for-light: #000000;
-        --header-bg-for-light: #FFFFFF;
-        --skills-bg-color-for-light:#F5F5F5 ; 
-        --mode-color-for-light:#121315;
-
-        /*Dark Mode Config*/
-        --main-bg-for-dark: #212225;
-        --main-text-color-for-dark: #FFFFFF;
-        --header-bg-for-dark:rgba(27, 29, 33, 0.8);/* 80% opacity */
-        --mode-color-for-dark:#FFFFFF;
-        --skills-bg-color-for-dark:#8a8484 ;
-        /*Global Color*/
-        --scrollbar-color: #C762F6;
-        --purple-color: #C762F6;
-        --blue-color: #00FFFF;
-    /*#endregion*/
-
-    --default-font-style: 'SourceCodePro_Regular';
-    --header-a-top-button-font-style: 'Source Code Pro', monospace;
-}
-
-/*#region Config Style*/
+/* Default styles for both light and dark modes */
 body {
-    background-color: var(--main-bg-for-light);
-    color: var(--main-text-color-for-light);
+    background-color: var(--bg-light);
+    color: var(--text-light);
     overflow-x: hidden; /* Hide horizontal scrollbar */
 }
+
+/*header*/
+/*Desktop Header*/
 header {
     position: absolute;
     top: 0;
@@ -65,17 +55,21 @@ header {
     z-index: 999;
     height: 60px;
     width: 100vw;
-    background-color: var(--header-bg-for-light);
+    background-color: var(--header-bg);
     z-index: 1;
 }
+
 footer {
     width: 100vw;
     height: 120px;
+    border: 2px red solid ;
     z-index: 1;
+    
 }
+
 a {
-    text-decoration: none; 
-    color: inherit; 
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent */
 }
 button{
     /* Resetting all default styles */
@@ -87,23 +81,25 @@ button{
     overflow: visible;
     padding: 0;
     cursor: pointer;
-    outline: none;
+    outline: none; /* Ensure no outline when focused */
+    /* Optionally, add more specific styles as needed */
 }
-/*#endregion*/
 
-/*#region Desktop Header*/
 .nav-button{
     display: inline-flex; /* Use flexbox */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    font-family: var(--header-a-top-button-font-style);
+    font-family: 'Source Code Pro', monospace;
     font-weight: 500;
     font-size: 11pt;
+    
 }
-.header-content .nav-button a:hover {
-    color: var(--blue-color); /* Change text color to blue on hover */
+
+.content .nav-button a:hover {
+    color: var(--scrollbar-color); /* Change text color to blue on hover */
 }
-.header-content .nav-button a::after {
+
+.content .nav-button a::after {
     content: ''; /* Create pseudo-element for underline */
     position: absolute; /* Position relative to anchor */
     width: 100%; /* Full width of anchor */
@@ -113,18 +109,28 @@ button{
     background-color: transparent; /* Initially transparent */
     transition: background-color 0.3s ease; /* Smooth transition for color change */
 }
-.header-content .nav-button a:hover::after {
-    background-color: var(--purple-color); /* Change underline color on hover */ 
+
+.content .nav-button a:hover::after {
+    background-color: var(--scrollbar-color); /* Change underline color on hover */
+    
 }
-.header-content{
-    width: 100%;
-    height: 100%;
-}
+
+
+
+
+/*LayoutDesign*/
 .horizontal-flex-layout{
     height: 100%;
     display: flex;
 }
-/*DO NOT EDIT FROM THIS PART TO END REGION*/
+/*Division / Container will remove once done*/
+.content{
+    width: 100%;
+    height: 100%;
+    /*border: 1px solid powderblue;*/
+
+}
+/*DO NOT EDIT*/
 .logo{
     width: 30%;
     display: flex;
@@ -149,21 +155,24 @@ button{
     width: 33px;
     height: 33px;
     position: relative;
+    
 }
+
 .mode-container {
     position: relative;
-    width: 100%; 
-    height: 100%; 
+    width: 100%; /* Adjusted for the border and mode container size */
+    height: 100%; /* Adjusted for the border and mode container size */
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-content: center;
+    /* background-color: green; */
 }
-/*#region Mode Design*/
+
 .sun-circle {
     width: 40%; /* Adjusted for the sun circle's size */
     height: 40%; /* Adjusted for the sun circle's size */
-    border: 2px solid var(--mode-color-for-light); /* White border for sun's circle */
+    border: 2px solid rgb(255, 255, 255); /* White border for sun's circle */
     border-radius: 50%;
     position: absolute;
     justify-self: center;
@@ -201,38 +210,22 @@ button{
     .sun-ray-rotation:nth-child(9){
     transform:rotate(360deg); /* Rotate the entire sun ray rotation */
     }
+
         .sun-ray {
             width: 3px; /* Adjust width of rays */
             height: 2px; /* Adjust height of rays */
-            background-color: var(--mode-color-for-light);
+            background-color: white;
             align-self: center;
         }
-/*#endregion*/
-/*#endregion*/
 
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: var(--main-bg-for-dark);
-        color: var(--main-text-color-for-dark);
-    }
-    header{
-        background-color: var(--header-bg-for-dark);
-    }
-    .sun-ray{
-        background-color: var(--mode-color-for-dark);
-    }
-    .sun-circle{
-        border-color: var(--mode-color-for-dark);
-    }
-}
+/*Section*/
 
 /*Custom Scrool Bar*/
 ::-webkit-scrollbar {
     width: 5px;
 }
 ::-webkit-scrollbar-track {
-    background: var(--main-bg-for-light);
+    background: var(--bg-light);
 }
 ::-webkit-scrollbar-thumb {
     background: var(--scrollbar-color);
@@ -322,7 +315,7 @@ button{
 /*SKILL*/
 .skill{
     width: 100vw;
-    background-color: var(--skills-bg-color-for-dark);
+    background-color: #121315;
     height: auto;
 }
 .skillPadding{
@@ -549,7 +542,7 @@ button{
             .nav-box{
                 width: 100%;
                 height: 100%;
-                background-color: var(--main-text-color-for-light);
+                background-color: var(--text-light);
                 margin: 3px 0;
             }
         .introductionContainer{
@@ -608,22 +601,22 @@ button{
 /* Dark mode styles */
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: var(--main-bg-for-dark);
-        color: var(--main-text-color-for-dark);
+        background-color: var(--bg-dark);
+        color: var(--text-dark);
     }
 
     header {
-        background-color: var(--header-bg-for-dark);
-        color: var(--main-text-color-for-dark);
+        background-color: var(--header-bg-dark);
+        color: var(--text-dark);
     }
     .nav-box {
-        background-color: var(--main-text-color-for-dark);
+        background-color: var(--text-dark);
     }
     ::-webkit-scrollbar-track {
-        background: var(--main-bg-for-dark);
+        background: var(--bg-dark);
     }  
     p{
-        color: var(--main-text-color-for-dark);
+        color: var(--text-dark);
     }
 }
 
@@ -635,7 +628,7 @@ button{
         background-color:#FFFFFF;
     }
     .aboutContainer p{
-        color: var(--main-text-color-for-light);
+        color: var(--text-light);
         
     }
 
@@ -645,7 +638,7 @@ button{
         text-shadow: 3px 3px 8px #000000;
     }
     .titleSection p{
-        color: var(--main-text-color-for-light);
+        color: var(--text-light);
     }
     .line{
         background-color: var(--purple-color);
@@ -653,13 +646,13 @@ button{
     /*SKills*/
     .skill{
         width: 100vw;
-        background-color: var(--skills-bg-color-for-light)     ;
+        background-color: var(--skills-bg-color)     ;
         height: auto;
     } 
 
             .progContainer{
                 
-                background-color: var(--main-bg-for-light);
+                background-color: var(--bg-light);
             }
 
         
@@ -690,7 +683,7 @@ button{
             
             }
             .subTitle p{
-                color: var(--main-text-color-for-light);
+                color: var(--text-light);
             }
             .software{
                 
@@ -698,7 +691,7 @@ button{
                 
             }     
             .graphicDesignWebDev{
-                background-color: var(--main-bg-for-light);
+                background-color: var(--bg-light);
             }
         
 }
