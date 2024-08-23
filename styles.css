@@ -18,6 +18,7 @@
     --scrollbar-color: #C762F6;
     --purple-color: #C762F6;
     --blue-color: #00FFFF;
+    --skills-bg-color:#F5F5F5 ; 
 }
 
 @font-face {
@@ -512,7 +513,14 @@ button{
     }
 }
 /*Mobile*/
-@media (max-width: 800px) {
+@media(max-height: 800px){
+    .home{
+        background-size:contain; /* Cover the entire background area */
+        background-position: bottom right;
+        height: auto;
+    }
+}
+@media (max-width: 800px)  {
     .nav-button {
         display: none;
     }
@@ -540,9 +548,10 @@ button{
         .introductionContainer{
                 margin: 20px 0 0 0;
             }
+            
     /*Home*/
     .home{
-        background-size:150% ; /* Cover the entire background area */
+        background-size:145%; /* Cover the entire background area */
         background-position: bottom center;
     }
     .hi p{
@@ -587,6 +596,7 @@ button{
     .softwareProficiency .progContainer{
         width: 110px;
     }
+    
 }
 /* Dark mode styles */
 @media (prefers-color-scheme: dark) {
@@ -604,6 +614,84 @@ button{
     }
     ::-webkit-scrollbar-track {
         background: var(--bg-dark);
+    }  
+    p{
+        color: var(--text-dark);
+    }
+}
+
+
+
+@media (prefers-color-scheme: light) {
+    /*ABOUT*/
+    .aboutContainer{
+        background-color:#FFFFFF;
+    }
+    .aboutContainer p{
+        color: var(--text-light);
+        
     }
 
+    /*Title Section*/
+    .titleSection h6{
+        color: var(--blue-color);
+        text-shadow: 3px 3px 8px #000000;
+    }
+    .titleSection p{
+        color: var(--text-light);
+    }
+    .line{
+        background-color: var(--purple-color);
+    } 
+    /*SKills*/
+    .skill{
+        width: 100vw;
+        background-color: var(--skills-bg-color)     ;
+        height: auto;
+    } 
+
+            .progContainer{
+                
+                background-color: var(--bg-light);
+            }
+
+        
+                .subTitleHLine{
+
+                    border-left: var(--purple-color) 3px solid;
+                }
+                .softwareSubTitle p{
+                    color: var(--purple-color);
+                    
+                }
+
+    
+                    .software p{
+                        color: var(--blue-color);
+                        text-shadow:  3px 3px 10px rgba(0, 0, 0, 0.5)
+                    }
+
+            .graphicDesignWebDev{
+
+                background-color: #212225;
+
+            }
+
+            .subLine{
+                background-color: var(--blue-color);
+                
+            
+            }
+            .subTitle p{
+                color: var(--text-light);
+            }
+            .software{
+                
+                border-left:none;
+                
+            }     
+            .graphicDesignWebDev{
+                background-color: var(--bg-light);
+            }
+        
 }
