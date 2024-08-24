@@ -26,35 +26,36 @@
 /*#endregion*/
 
 :root {
+    --main-bg: #D3D0D0; /* Light mode default */
+    --main-text-color: #000000;
+    --header-bg: #ffffffcc;
+    --skills-bg-color: #F5F5F5; 
+    --mode-color: #121315;
 
-    /*#region ColorScheme*/
-        /*Light Mode Config*/
-        --main-bg-for-light: #D3D0D0;
-        --main-text-color-for-light: #000000;
-        --header-bg-for-light: #FFFFFF;
-        --skills-bg-color-for-light:#F5F5F5 ; 
-        --mode-color-for-light:#121315;
+    /* Global colors */
+    --scrollbar-color: #C762F6;
+    --purple-color: #C762F6;
+    --blue-color: #00FFFF;
 
-        /*Dark Mode Config*/
-        --main-bg-for-dark: #212225;
-        --main-text-color-for-dark: #FFFFFF;
-        --header-bg-for-dark:rgba(27, 29, 33, 0.8);/* 80% opacity */
-        --mode-color-for-dark:#FFFFFF;
-        --skills-bg-color-for-dark:#8a8484 ;
-        /*Global Color*/
-        --scrollbar-color: #C762F6;
-        --purple-color: #C762F6;
-        --blue-color: #00FFFF;
-    /*#endregion*/
-
+    /* Font styles and images */
+    --my-digital-photo: url("./images/me.png");
     --default-font-style: 'SourceCodePro_Regular';
     --header-a-top-button-font-style: 'Source Code Pro', monospace;
 }
 
+/* Dark theme overrides */
+body.dark-theme {
+    --main-bg: #212225;
+    --main-text-color: #FFFFFF;
+    --header-bg: #1b1d21cc;
+    --skills-bg-color: #121315;
+    --mode-color: #505050;
+}
+
 /*#region Config Style*/
 body {
-    background-color: var(--main-bg-for-light);
-    color: var(--main-text-color-for-light);
+    background-color: var(--main-bg);
+    color: var(--main-text-color);
     overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 header {
@@ -65,7 +66,7 @@ header {
     z-index: 999;
     height: 60px;
     width: 100vw;
-    background-color: var(--header-bg-for-light);
+    background-color: var(--header-bg);
     z-index: 1;
 }
 footer {
@@ -88,6 +89,16 @@ button{
     padding: 0;
     cursor: pointer;
     outline: none;
+}
+/*Custom Scrool Bar*/
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background: var(--main-bg);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
 }
 /*#endregion*/
 
@@ -146,6 +157,7 @@ button{
     margin: 0 15px;
 }
 .mode {
+    margin-right: 5px ;
     width: 33px;
     height: 33px;
     position: relative;
@@ -159,91 +171,80 @@ button{
     justify-content: center;
     align-content: center;
 }
-/*#region Mode Design*/
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+/*#region Sun and Mood MODE Button*/
+/* Sun Circle Styles */
 .sun-circle {
-    width: 40%; /* Adjusted for the sun circle's size */
-    height: 40%; /* Adjusted for the sun circle's size */
-    border: 2px solid var(--mode-color-for-light); /* White border for sun's circle */
+    width: 40%; /* Initial size of the sun circle */
+    height: 40%; /* Initial size of the sun circle */
+    border: 2px solid var(--mode-color); /* Border color */
     border-radius: 50%;
     position: absolute;
     justify-self: center;
     align-self: center;
+    transition: width 0.3s, height 0.3s; /* Smooth transition for resizing */
 }
-.sun-ray-rotation{
+
+/* Expand Animation for Sun Circle */
+.sun-circle.expand {
+    width: 80%; /* Expanded size */
+    height: 80%; /* Expanded size */
+}
+
+/* Sun Rays Rotation */
+.sun-ray-rotation {
     position: absolute;
     width: 100%; /* Adjusted for the border and mode container size */
     height: 100%; /* Adjusted for the border and mode container size */
     border-radius: 50%;
     display: flex;
     padding: 15%;
+    opacity: 1; /* Initially visible */
+    transition: opacity 0.3s; /* Smooth transition for hiding rays */
 }
-    .sun-ray-rotation:nth-child(2){
-        transform:rotate(45deg); /* Rotate the entire sun ray rotation */
-    }
-    .sun-ray-rotation:nth-child(3){
-    transform:rotate(90deg); /* Rotate the entire sun ray rotation */
-    }
-    .sun-ray-rotation:nth-child(4){
-        transform:rotate(135deg); /* Rotate the entire sun ray rotation */
-    }
-    .sun-ray-rotation:nth-child(5){
-    transform:rotate(180deg); /* Rotate the entire sun ray rotation */
-    }
-    .sun-ray-rotation:nth-child(6){
-        transform:rotate(225deg); /* Rotate the entire sun ray rotation */
-    }
-    .sun-ray-rotation:nth-child(7){
-    transform: rotate(270deg); /* Rotate the entire sun ray rotation */
-    }
-    .sun-ray-rotation:nth-child(8){
-        transform:rotate(315deg); /* Rotate the entire sun ray rotation */
-    }
-    .sun-ray-rotation:nth-child(9){
-    transform:rotate(360deg); /* Rotate the entire sun ray rotation */
-    }
-        .sun-ray {
-            width: 3px; /* Adjust width of rays */
-            height: 2px; /* Adjust height of rays */
-            background-color: var(--mode-color-for-light);
-            align-self: center;
-        }
+
+/* Individual Sun Rays */
+.sun-ray {
+    width: 3px; /* Width of rays */
+    height: 2px; /* Height of rays */
+    background-color: var(--mode-color);
+    align-self: center;
+}
+
+/* Rotate Sun Ray Elements */
+.sun-ray-rotation:nth-child(1) { transform: rotate(0deg); }
+.sun-ray-rotation:nth-child(2) { transform: rotate(45deg); }
+.sun-ray-rotation:nth-child(3) { transform: rotate(90deg); }
+.sun-ray-rotation:nth-child(4) { transform: rotate(135deg); }
+.sun-ray-rotation:nth-child(5) { transform: rotate(180deg); }
+.sun-ray-rotation:nth-child(6) { transform: rotate(225deg); }
+.sun-ray-rotation:nth-child(7) { transform: rotate(270deg); }
+.sun-ray-rotation:nth-child(8) { transform: rotate(315deg); }
+.sun-ray-rotation:nth-child(9) { transform: rotate(360deg); }
+
+/* Hide Sun Rays on Click */
+.sun-circle.clicked ~ .sun-ray-rotation {
+    opacity: 0; /* Hide sun rays */
+}
+
 /*#endregion*/
 /*#endregion*/
 
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: var(--main-bg-for-dark);
-        color: var(--main-text-color-for-dark);
-    }
-    header{
-        background-color: var(--header-bg-for-dark);
-    }
-    .sun-ray{
-        background-color: var(--mode-color-for-dark);
-    }
-    .sun-circle{
-        border-color: var(--mode-color-for-dark);
-    }
-}
 
-/*Custom Scrool Bar*/
-::-webkit-scrollbar {
-    width: 5px;
-}
-::-webkit-scrollbar-track {
-    background: var(--main-bg-for-light);
-}
-::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-color);
-}
+
+
 
 /*HOME*/
 .home{
     padding:9%;
     height: 100vh;
     width: 100vw;
-    background-image:url("./images/me.png");
+    background-image:var(--my-digital-photo);
     background-size:50% auto ; /* Cover the entire background area */
     background-repeat: no-repeat;
     background-position: bottom right; /* Center the background image */
@@ -267,7 +268,7 @@ button{
     }
     .jobPosition p{
         font-family: 'SourceCodePro_Black';
-        color: var(--scrollbar-color);
+        color: var(--purple-color);
         font-size: 40px;
         line-height: 55px;
     }
@@ -322,7 +323,7 @@ button{
 /*SKILL*/
 .skill{
     width: 100vw;
-    background-color: var(--skills-bg-color-for-dark);
+    background-color: var(--skills-bg-color);
     height: auto;
 }
 .skillPadding{
@@ -531,13 +532,12 @@ button{
     .nav-button {
         display: none;
     }
-    .mode{
-        display: none;
-    }
+    
 
     .nav{
         width: 30%;
         height: 60%;
+        margin-left:5px ;
     }
         .mobile-nav{
             display: flex;
@@ -549,7 +549,7 @@ button{
             .nav-box{
                 width: 100%;
                 height: 100%;
-                background-color: var(--main-text-color-for-light);
+                background-color: var(--main-text-color);
                 margin: 3px 0;
             }
         .introductionContainer{
@@ -605,100 +605,5 @@ button{
     }
     
 }
-/* Dark mode styles */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: var(--main-bg-for-dark);
-        color: var(--main-text-color-for-dark);
-    }
-
-    header {
-        background-color: var(--header-bg-for-dark);
-        color: var(--main-text-color-for-dark);
-    }
-    .nav-box {
-        background-color: var(--main-text-color-for-dark);
-    }
-    ::-webkit-scrollbar-track {
-        background: var(--main-bg-for-dark);
-    }  
-    p{
-        color: var(--main-text-color-for-dark);
-    }
-}
 
 
-
-@media (prefers-color-scheme: light) {
-    /*ABOUT*/
-    .aboutContainer{
-        background-color:#FFFFFF;
-    }
-    .aboutContainer p{
-        color: var(--main-text-color-for-light);
-        
-    }
-
-    /*Title Section*/
-    .titleSection h6{
-        color: var(--blue-color);
-        text-shadow: 3px 3px 8px #000000;
-    }
-    .titleSection p{
-        color: var(--main-text-color-for-light);
-    }
-    .line{
-        background-color: var(--purple-color);
-    } 
-    /*SKills*/
-    .skill{
-        width: 100vw;
-        background-color: var(--skills-bg-color-for-light)     ;
-        height: auto;
-    } 
-
-            .progContainer{
-                
-                background-color: var(--main-bg-for-light);
-            }
-
-        
-                .subTitleHLine{
-
-                    border-left: var(--purple-color) 3px solid;
-                }
-                .softwareSubTitle p{
-                    color: var(--purple-color);
-                    
-                }
-
-    
-                    .software p{
-                        color: var(--blue-color);
-                        text-shadow:  3px 3px 10px rgba(0, 0, 0, 0.5)
-                    }
-
-            .graphicDesignWebDev{
-
-                background-color: #212225;
-
-            }
-
-            .subLine{
-                background-color: var(--blue-color);
-                
-            
-            }
-            .subTitle p{
-                color: var(--main-text-color-for-light);
-            }
-            .software{
-                
-                border-left:none;
-                
-            }     
-            .graphicDesignWebDev{
-                background-color: var(--main-bg-for-light);
-            }
-        
-}
