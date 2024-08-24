@@ -50,6 +50,7 @@ body.dark-theme {
     --header-bg: #1b1d21cc;
     --skills-bg-color: #121315;
     --mode-color: #505050;
+    
 }
 
 /*#region Config Style*/
@@ -187,12 +188,14 @@ button{
     justify-self: center;
     align-self: center;
     transition: width 0.3s, height 0.3s; /* Smooth transition for resizing */
+    border-color: #C762F6;
 }
 
 /* Expand Animation for Sun Circle */
 .sun-circle.expand {
     width: 80%; /* Expanded size */
     height: 80%; /* Expanded size */
+    border-color: #ff0000;
 }
 
 /* Sun Rays Rotation */
@@ -521,7 +524,7 @@ button{
     }
 }
 /*Mobile*/
-@media(max-height: 800px){
+@media(max-height: 400px){
     .home{
         background-size:contain; /* Cover the entire background area */
         background-position: bottom right;
@@ -532,12 +535,10 @@ button{
     .nav-button {
         display: none;
     }
-    
-
     .nav{
         width: 30%;
         height: 60%;
-        margin-left:5px ;
+        margin-left:5px;
     }
         .mobile-nav{
             display: flex;
