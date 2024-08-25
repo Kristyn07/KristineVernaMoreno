@@ -25,10 +25,8 @@
             <div class="header-content color-mode">
                 <button id="toggle-theme">
                     <div class="mode">
-                         <!--SUN = LIGHT MODE-->
                         <div class="mode-container"> 
-                          <div class="sun-circle"></div>
-                          <!-- Sun's rays -->
+                          <div class="mode-button"></div>
                            <div class="sun-ray-rotation"><div class="sun-ray"></div></div>
                            <div class="sun-ray-rotation"><div class="sun-ray"></div></div>
                            <div class="sun-ray-rotation"><div class="sun-ray"></div></div>
@@ -39,20 +37,30 @@
                            <div class="sun-ray-rotation"><div class="sun-ray"></div></div>
                         </div>
                       </div>
-                    </button>
-                <div class="nav">
-                    <div class="mobile-nav">
-                        <div class="nav-box"></div>
-                        <div class="nav-box"></div>
-                        <div class="nav-box"></div>
+                </button>
+                <button id="mob-nav">
+                    <div class="nav">
+                        <div class="mobile-nav">
+                            <div class="nav-box"></div>
+                            <div class="nav-box"></div>
+                            <div class="nav-box"></div>
+                        </div>
                     </div>
-                </div>
-                
+                </button>
             </div>
+            <nav id="mobile-menu" class="hidden">
+                <!-- Your navigation menu items here -->
+                <ul>
+                    <li id="close-nav"><a href="#home_section">HOME</a></li>
+                    <li id="close-nav"><a href="#about_section">ABOUT</a></li>
+                    <li id="close-nav"><a href="#skill_section">SKILL</a></li>
+                    <li id="project-link"><a href="#project_section">PROJECT</a></li>
+                    <li id="contact-link"><a href="#contact_section">CONTACT</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
     <main>
-        
         <!--INTRO-->
         <article>
             <section id="home_section">
@@ -68,7 +76,8 @@
                         <div class="jobPosition">
                             <p>Software Engineer</p>
                         </div>
-                        
+                        <div class="moon"></div>
+
                         <div class = "introQoutes">
                             <p >
                                 Coding the Future: Crafting Digital <br>

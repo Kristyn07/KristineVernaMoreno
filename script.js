@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener('DOMContentLoaded', function() {
     const toggleButton = document.getElementById('toggle-theme');
     const currentTheme = localStorage.getItem('theme');
-    const sunCircle = document.querySelector('.sun-circle');
+    const sunCircle = document.querySelector('.mode-button');
 
     // Apply the saved theme from localStorage (if any)
     if (currentTheme) {
@@ -62,11 +62,59 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sun Circle Animation
     if (sunCircle) {
         sunCircle.addEventListener('click', function() {
-            // Toggle the 'expand' and 'clicked' classes on the sun circle
-            sunCircle.classList.toggle('expand');
             sunCircle.classList.toggle('clicked');
         });
     }
+});
+
+// document.getElementById('mob-nav').addEventListener('click', function() {
+//     var menu = document.getElementById('mobile-menu');
+//     var header = document.querySelector('header');
+//     var body = document.body;
+
+//     if (menu.classList.contains('hidden')) {
+//         // Show the menu
+//         menu.classList.remove('hidden');
+//         menu.classList.add('show'); // Trigger the slide-in transition
+//         header.style.position = 'fixed';
+//         body.style.overflowY = 'hidden'; // Disable vertical scrolling
+//     } else {
+//         // Hide the menu
+//         menu.classList.remove('show'); // Trigger the slide-out transition
+//         setTimeout(function() {
+//             menu.classList.add('hidden'); // After transition ends, hide it
+//         }, 300); // Match the duration of the transition
+//         header.style.position = 'absolute';
+//         body.style.overflowY = ''; // Re-enable vertical scrolling
+//     }
+// });
+function toggleMenu() {
+    var menu = document.getElementById('mobile-menu');
+    var header = document.querySelector('header');
+    var body = document.body;
+
+    if (menu.classList.contains('hidden')) {
+        // Show the menu
+        menu.classList.remove('hidden');
+        menu.classList.add('show'); // Trigger the slide-in transition
+        header.style.position = 'fixed';
+        body.style.overflowY = 'hidden'; // Disable vertical scrolling
+    } else {
+        // Hide the menu
+        menu.classList.remove('show'); // Trigger the slide-out transition
+        setTimeout(function() {
+            menu.classList.add('hidden'); // After transition ends, hide it
+        }, 300); // Match the duration of the transition
+        header.style.position = 'absolute';
+        body.style.overflowY = ''; // Re-enable vertical scrolling
+    }
+}
+
+
+document.getElementById('mob-nav').addEventListener('click', toggleMenu);
+
+document.querySelectorAll('#mobile-menu ul li a').forEach(function(link) {
+    link.addEventListener('click', toggleMenu);
 });
 
 

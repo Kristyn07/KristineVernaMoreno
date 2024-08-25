@@ -1,5 +1,3 @@
-/*Division / Container will remove once done*/
-
 
 *{
     margin: 0;
@@ -30,8 +28,10 @@
     --main-text-color: #000000;
     --header-bg: #ffffffcc;
     --skills-bg-color: #F5F5F5; 
-    --mode-color: #121315;
-
+    --mode-color-border: #505050;
+    --mode-color-background: #1d3838da;
+    --mode-color-whiteness: #ffffffc9;
+    --hover-color-mobile-nav:#0000005d;
     /* Global colors */
     --scrollbar-color: #C762F6;
     --purple-color: #C762F6;
@@ -42,15 +42,14 @@
     --default-font-style: 'SourceCodePro_Regular';
     --header-a-top-button-font-style: 'Source Code Pro', monospace;
 }
-
 /* Dark theme overrides */
 body.dark-theme {
     --main-bg: #212225;
     --main-text-color: #FFFFFF;
     --header-bg: #1b1d21cc;
     --skills-bg-color: #121315;
-    --mode-color: #505050;
-    
+    --hover-color-mobile-nav:#FFFFFF5d;
+
 }
 
 /*#region Config Style*/
@@ -104,6 +103,19 @@ button{
 /*#endregion*/
 
 /*#region Desktop Header*/
+.logo{
+    width: 30%;
+    display: flex;
+    align-items: center; 
+}
+.logo img {
+    width: 155.7px;
+    height: 38.7px;
+    padding: 0 5px ;
+}
+.nav-button-layout{
+    width: 40%;
+}
 .nav-button{
     display: inline-flex; /* Use flexbox */
     justify-content: center; /* Center horizontally */
@@ -136,20 +148,7 @@ button{
     height: 100%;
     display: flex;
 }
-/*DO NOT EDIT FROM THIS PART TO END REGION*/
-.logo{
-    width: 30%;
-    display: flex;
-    align-items: center; 
-}
-.logo img {
-    width: 155.7px;
-    height: 38.7px;
-    padding: 0 5px ;
-}
-.nav-button-layout{
-    width: 40%;
-}
+/*#region Sun and Mood MODE Button*/
 .color-mode{
     width: 30%;
     display: flex;
@@ -177,25 +176,32 @@ button{
     top: 20px;
     right: 20px;
 }
-/*#region Sun and Mood MODE Button*/
-/* Sun Circle Styles */
-.sun-circle {
-    width: 40%; /* Initial size of the sun circle */
-    height: 40%; /* Initial size of the sun circle */
-    border: 2px solid var(--mode-color); /* Border color */
+.mode-button {
+    width: 70%; /* Initial size of the sun circle */
+    height: 70%; /* Initial size of the sun circle */
+    border: 2px solid var(--mode-color-border); /* Border color */
     border-radius: 50%;
     position: absolute;
     justify-self: center;
     align-self: center;
-    transition: width 0.3s, height 0.3s; /* Smooth transition for resizing */
-    border-color: #C762F6;
+    transition: width 0.4s, height 0.4s; /* Smooth transition for resizing */
+    overflow: hidden;
+    background-color: var(--mode-color-whiteness);
 }
-
-/* Expand Animation for Sun Circle */
-.sun-circle.expand {
-    width: 80%; /* Expanded size */
-    height: 80%; /* Expanded size */
-    border-color: #ff0000;
+.mode-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 100%; /* Extend beyond the half-moon to ensure full coverage */
+    height: 100%;
+    border-radius: 50%;
+    background: var(--mode-color-background); /* Same color as the background to create the half moon effect */
+}
+/* Expand Animation for Sun Circle to moon */
+.mode-button.clicked {
+    width: 40%; /* Expanded size */
+    height: 40%; /* Expanded size */
 }
 
 /* Sun Rays Rotation */
@@ -206,7 +212,7 @@ button{
     border-radius: 50%;
     display: flex;
     padding: 15%;
-    opacity: 1; /* Initially visible */
+    opacity: 0; /* Initially visible */
     transition: opacity 0.3s; /* Smooth transition for hiding rays */
 }
 
@@ -214,7 +220,7 @@ button{
 .sun-ray {
     width: 3px; /* Width of rays */
     height: 2px; /* Height of rays */
-    background-color: var(--mode-color);
+    background-color: var(--mode-color-border);
     align-self: center;
 }
 
@@ -230,12 +236,103 @@ button{
 .sun-ray-rotation:nth-child(9) { transform: rotate(360deg); }
 
 /* Hide Sun Rays on Click */
-.sun-circle.clicked ~ .sun-ray-rotation {
-    opacity: 0; /* Hide sun rays */
+.mode-button.clicked ~ .sun-ray-rotation {
+    opacity: 1; /* Hide sun rays */
 }
 
 /*#endregion*/
 /*#endregion*/
+
+
+.nav{
+    width: 50px;
+    height: 40px;
+    margin-left:10px;
+}
+    .mobile-nav{
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+    }
+
+    
+        .nav-box{
+            width: 100%;
+            height: 100%;
+            background-color: var(--main-text-color);
+            margin: 3px 0;
+        }
+
+/*navigation menu bar */
+#mobile-menu {
+    /* display: none; */
+    background-color: var(--main-bg);
+    padding: 5% 0;
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    height: 100vh;
+    transform: translateY(-120%); /* Start off-screen */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth slide effect */
+    z-index: -50;
+}
+#mobile-menu.show {
+    transform: translateY(0); /* Slide into view */
+}
+.hidden {
+    /* display: none; */
+    transform: translateY(-120%); /* Start off-screen */
+    background-color: var(--main-bg);
+}
+
+
+#mobile-menu ul {
+    list-style-type: none;
+    padding: 10px;    
+}
+
+#mobile-menu ul li {
+    padding: 15px 0;
+}
+
+#mobile-menu ul li a {
+    color: --main-text-color;
+    font-family: var(--default-font-style);
+    font-size: 20px;
+    display: block; 
+    text-align: center;
+  
+}
+
+#mobile-menu ul li:hover {
+    background-color: var(--hover-color-mobile-nav);
+    color: var(--blue-color);
+}
+
+
+@media (max-width: 800px){
+    .nav-button {
+        display: none;
+    } 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -532,27 +629,6 @@ button{
     }
 }
 @media (max-width: 800px)  {
-    .nav-button {
-        display: none;
-    }
-    .nav{
-        width: 30%;
-        height: 60%;
-        margin-left:5px;
-    }
-        .mobile-nav{
-            display: flex;
-            height: 100%;
-            flex-direction: column;
-            }
-
-        
-            .nav-box{
-                width: 100%;
-                height: 100%;
-                background-color: var(--main-text-color);
-                margin: 3px 0;
-            }
         .introductionContainer{
                 margin: 20px 0 0 0;
             }
