@@ -25,13 +25,15 @@
 
 :root {
     --main-bg: #D3D0D0; /* Light mode default */
-    --main-text-color: #000000;
+    --main-text-color: #000000d3;
+    --reverse-main-text-color:#ffffffd3;
     --header-bg: #ffffffcc;
     --skills-bg-color: #F5F5F5; 
     --mode-color-border: #505050;
     --mode-color-background: #1d3838da;
     --mode-color-whiteness: #ffffffc9;
     --hover-color-mobile-nav:#0000005d;
+    --about-container-color:#ffffffc9;
     /* Global colors */
     --scrollbar-color: #C762F6;
     --purple-color: #C762F6;
@@ -40,16 +42,19 @@
     /* Font styles and images */
     --my-digital-photo: url("./images/me.png");
     --default-font-style: 'SourceCodePro_Regular';
+    --default-font-style-semibold: 'SourceCodePro_SemiBold';
     --header-a-top-button-font-style: 'Source Code Pro', monospace;
+    --default-font-style-extrabold:'SourceCodePro_ExtraBold';
 }
-/* Dark theme overrides */
+
 body.dark-theme {
     --main-bg: #212225;
-    --main-text-color: #FFFFFF;
+    --main-text-color: #ffffffd3;
+    --reverse-main-text-color: #000000d3;
     --header-bg: #1b1d21cc;
     --skills-bg-color: #121315;
     --hover-color-mobile-nav:#FFFFFF5d;
-
+    --about-container-color: #1B1D21;
 }
 
 /*#region Config Style*/
@@ -243,11 +248,13 @@ button{
 /*#endregion*/
 /*#endregion*/
 
-
+/*#region Mobile Header*/
 .nav{
     width: 50px;
     height: 40px;
     margin-left:10px;
+    display: none;
+
 }
     .mobile-nav{
         display: flex;
@@ -308,47 +315,28 @@ button{
     background-color: var(--hover-color-mobile-nav);
     color: var(--blue-color);
 }
+/*#endregion*/
 
-
-@media (max-width: 800px){
-    .nav-button {
-        display: none;
-    } 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*HOME*/
-.home{
-    padding:9%;
+/*#region HOME*/
+.home {
+    padding: 9%;
     height: 100vh;
     width: 100vw;
-    background-image:var(--my-digital-photo);
-    background-size:50% auto ; /* Cover the entire background area */
-    background-repeat: no-repeat;
-    background-position: bottom right; /* Center the background image */
+    position: relative; /* Ensure children are positioned relative to this container */
     z-index: 0; /* Set a low z-index to place it behind the header */
+}
+
+.home .myPhoto {
+    position: absolute; /* Position the image absolutely within the .home container */
+    top: 0;
+    right: 100px;
+    bottom: 0;
+    left: 0;
+    background-image: var(--my-digital-photo);
+    background-size: 60% auto; /* Adjust the size as needed */
+    background-repeat: no-repeat;
+    background-position:bottom right; /* Adjust as needed */
+    z-index: -1; /* Ensure it stays behind other content */
 }
 
 .introductionContainer {
@@ -379,14 +367,33 @@ button{
         font-size: 20px;
         line-height: 30px;
     }
+    .hi p{
+        font-size: 20px;
+        line-height: 50px;
+    }
+    .name p{
+        font-size: 40px;
+        line-height: 50px;
+    }
+    .jobPosition p{
+        font-size: 30px;
+        line-height: 40px;
+    }
+    .introQoutes p{
+        margin: 10px 0;
+        font-size: 18px;
+        line-height: 30px;
+    }      
+/*#endregion*/
 
-/*ABOUT*/
+/*#region ABOUT*/
 .about{
     padding:5% 9% ;
     width: 100vw;
 }
+
 .aboutContainer{
-    background-color:#1B1D21;
+    background-color:var(--about-container-color);
     border-radius: 30px;
     padding: 2%;
     width: 100%;
@@ -394,33 +401,104 @@ button{
     justify-content: center; 
 }
 .aboutContainer p{
-    color: white;
+    color: var(--main-text-color);
     font-family: 'SourceCodePro_SemiBold';
     font-size: 15px;
 }
+/*#endregion ABOUT*/
+
+
+
+/*#region Get In Touch BTN*/
 .getInTouch {
     background-color: var(--purple-color);
+    font-family: var(--default-font-style-semibold);
     padding: 5px 10px ; 
     text-align: center;
     font-size: 15px; 
     border-radius: 8px; 
     cursor: pointer; 
     transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+    color: var(--main-text-color);
 }
 
 /* Button hover effect */
 .getInTouch:hover {
     background-color: var(--blue-color);
-    color: black;
+    color: var(--reverse-main-text-color);
     transform: scale(1.05); /* Slightly scale up on hover */
 }
+/*#endregion Get In Touch BTN*/
 
-/* Button focus effect */
-.getInTouch:focus {
-    outline: none; /* Remove default outline */
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5); /* Blue shadow for focus */
+/*#region Title with animation*/
+.titleSection h6{
+    color: var(--blue-color);
+    font-family: var(--default-font-style-semibold);
+    font-size: 25px;
 }
-/*SKILL*/
+.titleSection p{
+    color: var(--purple-color);
+    font-family:  var(--default-font-style-semibold);
+    font-size: 15px;
+}
+.line{
+    width: 0px;
+    height: 6px;
+    background-color: var(--purple-color);
+    clip-path: polygon(0% 0%, 20% 30%, 100% 0%, 100% 0%, 0% 100%);
+
+}
+.animate-line {
+    animation: drawLine 2s forwards;
+}
+
+@keyframes drawLine {
+    from {
+        width: 0;
+    }
+    to {
+        width: 280px; /* End with full width */
+    }
+}
+/*#endregion Title with animation*/
+
+/*#region Different Size Media*/
+@media (max-width: 900px){
+    /*#region Header*/
+    .nav{
+        display: inherit;
+    }
+    .nav-button {
+        display: none;
+    } 
+    /*#endregion*/
+    
+    /*#region HOME*/
+    .home .myPhoto{
+        right: 0;
+        background-size:150%; /* Cover the entire background area */
+        background-position: bottom center;
+    }
+    .introductionContainer{
+        margin: 0px 0 0 0;
+    }
+    /*#endregion HOME*/
+}
+
+@media(max-height: 400px){
+    /*#region HOME*/
+    .home .myPhoto{
+        background-size:contain; /* Cover the entire background area */
+        background-position: bottom right;
+        height: auto;
+    }
+    /*#endregion HOME*/
+}
+
+/*#endregion*/
+
+
+/*#region SKILLS*/
 .skill{
     width: 100vw;
     background-color: var(--skills-bg-color);
@@ -429,24 +507,132 @@ button{
 .skillPadding{
     padding: 3%;
 }
-    .programmingLanguage{
+
+.subTitle{
+    display: flex;
+}
+.subLine{
+    clip-path: polygon(
+        0% 0%,       /* Top-left corner */
+        100% 0%,     /* Top-right corner */
+        50% 50%,    /* Mid-right edge */
+        50% 50%,     /* Start of diagonal cutout */
+        100% 100%,    /* Bottom center */
+        0% 100%      /* End of diagonal cutout */
+    );
+    
+    width: 50px;
+    height: 40px;
+    background-color: var(--purple-color);
+
+}
+.subTitle p{
+    color: var(--main-text-color);
+    font-family:var(--default-font-style-extrabold) ;
+    font-size: 20px;
+    text-align: center;
+    align-content: center;
+}
+
+
+    
+    
+/*#endregion SKILLS*/
+
+
+/* 
+.skill .container-layout{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
         margin: 2%;
-        
     }
-        .progContainer{
-            margin: 10px;
-            width: 200px;
-            height: 180px;
-            background-color: #212225;
-            border-radius: 30px;
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-        }
+
+.skill .container-layout .stack{
+    margin: 10px;
+    width: 200px;
+    height: 180px;
+    background-color: #212225;
+    border-radius: 30px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+} */
+
+.skill-layout{
+    padding: 0 20px;
+    margin: 0 2%;
+    display: flexbox;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+    .skill .skill-layout .box-container {
+        display: grid; /* Use grid layout */
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); /* Responsive columns */
+        gap: 25px; /* Space between items */
+        margin-top: 10px;
+    }
+
+    .skill .skill-layout .box-container .box {
+        box-shadow: 0 5px 10px var(--reverse-main-text-color);
+        border-radius: 15px;
+        background: var(--main-bg);
+        text-align: center;
+        padding: 30px 20px;
+        margin: 10px 0;
+    }
+
+    .skill .skill-layout .box-container .box img {
+        padding: 5px 0;
+        height: 150px;
+    }
+
+    .skill .skill-layout .box-container .box h3 {
+        color: var(--main-text-color);
+        font-size: 22px;
+        padding: 10px 0;
+        font-family: var(--default-font-style-semibold);
+    }
+
+    .skill .skill-layout .box-container .box p {
+        display: none;
+        font-size: 15px;
+        line-height: 1.8;
+        font-family: var(--default-font-style);
+    }
+
+    .skill .skill-layout .box-container .box:hover {
+        box-shadow: 0 10px 10px var(--purple-color);
+        transform: scale(1.03);
+    }
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*SKILL*/
+
+    
+        
         .progImageContainer{
             width: 140px;
             height: 140px; 
@@ -549,31 +735,6 @@ button{
 }
 
 
-.subTitle{
-    display: flex;
-}
-.subLine{
-    clip-path: polygon(
-        0% 0%,       /* Top-left corner */
-        100% 0%,     /* Top-right corner */
-        50% 50%,    /* Mid-right edge */
-        50% 50%,     /* Start of diagonal cutout */
-        100% 100%,    /* Bottom center */
-        0% 100%      /* End of diagonal cutout */
-    );
-    
-    width: 50px;
-    height: 40px;
-    background-color: #D9D9D9;
-
-}
-.subTitle p{
-    color: white;
-    font-family: 'SourceCodePro_ExtraBold';
-    font-size: 20px;
-    text-align: center;
-    align-content: center;
-}
 
 /*On Right*/
 .onRight{
@@ -590,71 +751,13 @@ button{
     width: 100%;
     height: 15px;
 }
-/*Title with animation*/
-.titleSection h6{
-    color: var(--blue-color);
-    font-family: 'SourceCodePro_SemiBold';
-    font-size: 25px;
-}
-.titleSection p{
-    color: white;
-    font-family: 'SourceCodePro_SemiBold';
-    font-size: 15px;
-}
-.line{
-    width: 0px;
-    height: 6px;
-    background-color: var(--purple-color);
-    clip-path: polygon(0% 0%, 20% 30%, 100% 0%, 100% 0%, 0% 100%);
 
-}
-.animate-line {
-    animation: drawLine 2s forwards;
-}
-
-@keyframes drawLine {
-    from {
-        width: 0;
-    }
-    to {
-        width: 280px; /* End with full width */
-    }
-}
-/*Mobile*/
-@media(max-height: 400px){
-    .home{
-        background-size:contain; /* Cover the entire background area */
-        background-position: bottom right;
-        height: auto;
-    }
-}
 @media (max-width: 800px)  {
-        .introductionContainer{
-                margin: 20px 0 0 0;
-            }
+        
             
     /*Home*/
-    .home{
-        background-size:145%; /* Cover the entire background area */
-        background-position: bottom center;
-    }
-    .hi p{
-        font-size: 20px;
-        line-height: 50px;
-    }
-    .name p{
-        font-size: 40px;
-        line-height: 50px;
-    }
-    .jobPosition p{
-        font-size: 30px;
-        line-height: 40px;
-    }
-    .introQoutes p{
-        margin: 10px 0;
-        font-size: 18px;
-        line-height: 30px;
-    }       
+    
+     
 
     /*Skills*/
     .progContainer{

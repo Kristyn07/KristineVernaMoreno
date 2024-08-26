@@ -6,17 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Add the class to start the animation
                     line.classList.add('animate-line');
                 } else {
-                    // Remove the class when the element goes out of view
                     line.classList.remove('animate-line');
                 }
             });
         }, {
-            threshold: 0.1 // Adjust this to control when the animation starts (10% visibility)
+            threshold: 0.1
         });
-
         observer.observe(line);
     });
 });
@@ -30,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Apply the saved theme from localStorage (if any)
     if (currentTheme) {
         document.body.classList.add(currentTheme);
-        // Check if the current theme is dark to set the sun circle correctly
         if (currentTheme === 'dark-theme') {
             sunCircle.classList.add('clicked');
         }
@@ -67,27 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// document.getElementById('mob-nav').addEventListener('click', function() {
-//     var menu = document.getElementById('mobile-menu');
-//     var header = document.querySelector('header');
-//     var body = document.body;
-
-//     if (menu.classList.contains('hidden')) {
-//         // Show the menu
-//         menu.classList.remove('hidden');
-//         menu.classList.add('show'); // Trigger the slide-in transition
-//         header.style.position = 'fixed';
-//         body.style.overflowY = 'hidden'; // Disable vertical scrolling
-//     } else {
-//         // Hide the menu
-//         menu.classList.remove('show'); // Trigger the slide-out transition
-//         setTimeout(function() {
-//             menu.classList.add('hidden'); // After transition ends, hide it
-//         }, 300); // Match the duration of the transition
-//         header.style.position = 'absolute';
-//         body.style.overflowY = ''; // Re-enable vertical scrolling
-//     }
-// });
+//#region mobile navigation menu
 function toggleMenu() {
     var menu = document.getElementById('mobile-menu');
     var header = document.querySelector('header');
@@ -109,12 +85,9 @@ function toggleMenu() {
         body.style.overflowY = ''; // Re-enable vertical scrolling
     }
 }
-
-
 document.getElementById('mob-nav').addEventListener('click', toggleMenu);
-
 document.querySelectorAll('#mobile-menu ul li a').forEach(function(link) {
     link.addEventListener('click', toggleMenu);
 });
-
+//#endregion
 
