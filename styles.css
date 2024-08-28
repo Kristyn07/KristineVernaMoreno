@@ -405,10 +405,6 @@ button{
     font-family: 'SourceCodePro_SemiBold';
     font-size: 15px;
 }
-/*#endregion ABOUT*/
-
-
-
 /*#region Get In Touch BTN*/
 .getInTouch {
     background-color: var(--purple-color);
@@ -429,6 +425,115 @@ button{
     transform: scale(1.05); /* Slightly scale up on hover */
 }
 /*#endregion Get In Touch BTN*/
+/*#endregion ABOUT*/
+
+/*#region SKILLS*/
+.skill{
+    width: 100vw;
+    background-color: var(--skills-bg-color);
+    height: auto;
+}
+.skillPadding{
+    padding: 3%;
+}
+
+.subTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.subLine{
+    clip-path: polygon(
+        0% 0%,       /* Top-left corner */
+        100% 0%,     /* Top-right corner */
+        50% 50%,    /* Mid-right edge */
+        50% 50%,     /* Start of diagonal cutout */
+        100% 100%,    /* Bottom center */
+        0% 100%      /* End of diagonal cutout */
+    );
+    
+    width: 50px;
+    height: 40px;
+    background-color: var(--purple-color);
+
+}
+.subLineReverse{
+    clip-path: polygon(
+        100% 0%,       /* Top-left corner */
+        0% 0%,     /* Top-right corner */
+        50% 50%,    /* Mid-right edge */
+        50% 50%,     /* Start of diagonal cutout */
+        0% 100%,    /* Bottom center */
+        100% 100%      /* End of diagonal cutout */
+    );
+    
+    width: 50px;
+    height: 40px;
+    background-color: var(--purple-color);
+
+}
+.subTitle p{
+    color: var(--main-text-color);
+    font-family:var(--default-font-style-extrabold) ;
+    font-size: 20px;
+    text-align: center;
+    align-content: center;
+}
+
+.skill-layout{
+    padding: 0 20px;
+    margin: 0 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+    .skill .skill-layout .box-container {
+        flex: 1;
+        margin: 10px;
+        min-width: 150px;
+        display: grid; /* Use grid layout */
+        gap: 25px; /* Space between items */
+        margin-top: 10px;
+    }
+
+    .skill .skill-layout .box-container .box {
+        box-shadow: 0 5px 10px var(--reverse-main-text-color);
+        border-radius: 15px;
+        background: var(--main-bg);
+        text-align: center;
+        padding: 10px ;
+        margin: 5px 0;
+    }
+
+    .skill .skill-layout .box-container .box img {
+        height: 50px;
+        filter: grayscale(80%); /* Apply grayscale effect */
+        transition: filter 0.3s ease; /* Smooth transition when hovering */
+    }
+    
+    .skill .skill-layout .box-container .box:hover img {
+        filter: none; 
+    }
+
+    .skill .skill-layout .box-container .box h3 {
+        color: var(--main-text-color);
+        font-size: 15px;
+        padding: 10px 0;
+        font-family: var(--default-font-style-semibold);
+    }
+
+    .skill .skill-layout .box-container .box p {
+        display: none;
+        font-size: 15px;
+        line-height: 1.8;
+        font-family: var(--default-font-style);
+    }
+
+    .skill .skill-layout .box-container .box:hover {
+        box-shadow: 0 10px 10px var(--purple-color);
+        transform: scale(1.03);
+    }
+/*#endregion SKILLS*/
 
 /*#region Title with animation*/
 .titleSection h6{
@@ -497,234 +602,137 @@ button{
 
 /*#endregion*/
 
-
-/*#region SKILLS*/
-.skill{
-    width: 100vw;
-    background-color: var(--skills-bg-color);
-    height: auto;
-}
-.skillPadding{
-    padding: 3%;
-}
-
-.subTitle{
-    display: flex;
-}
-.subLine{
-    clip-path: polygon(
-        0% 0%,       /* Top-left corner */
-        100% 0%,     /* Top-right corner */
-        50% 50%,    /* Mid-right edge */
-        50% 50%,     /* Start of diagonal cutout */
-        100% 100%,    /* Bottom center */
-        0% 100%      /* End of diagonal cutout */
-    );
-    
-    width: 50px;
-    height: 40px;
-    background-color: var(--purple-color);
-
-}
-.subTitle p{
-    color: var(--main-text-color);
-    font-family:var(--default-font-style-extrabold) ;
-    font-size: 20px;
-    text-align: center;
-    align-content: center;
-}
-
-
-    
-    
-/*#endregion SKILLS*/
-
-
-/* 
-.skill .container-layout{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        margin: 2%;
-    }
-
-.skill .container-layout .stack{
-    margin: 10px;
-    width: 200px;
-    height: 180px;
-    background-color: #212225;
-    border-radius: 30px;
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-} */
-
-.skill-layout{
-    padding: 0 20px;
-    margin: 0 2%;
-    display: flexbox;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
-    .skill .skill-layout .box-container {
-        display: grid; /* Use grid layout */
-        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); /* Responsive columns */
-        gap: 25px; /* Space between items */
-        margin-top: 10px;
-    }
-
-    .skill .skill-layout .box-container .box {
-        box-shadow: 0 5px 10px var(--reverse-main-text-color);
-        border-radius: 15px;
-        background: var(--main-bg);
-        text-align: center;
-        padding: 30px 20px;
-        margin: 10px 0;
-    }
-
-    .skill .skill-layout .box-container .box img {
-        padding: 5px 0;
-        height: 150px;
-    }
-
-    .skill .skill-layout .box-container .box h3 {
-        color: var(--main-text-color);
-        font-size: 22px;
-        padding: 10px 0;
-        font-family: var(--default-font-style-semibold);
-    }
-
-    .skill .skill-layout .box-container .box p {
-        display: none;
-        font-size: 15px;
-        line-height: 1.8;
-        font-family: var(--default-font-style);
-    }
-
-    .skill .skill-layout .box-container .box:hover {
-        box-shadow: 0 10px 10px var(--purple-color);
-        transform: scale(1.03);
-    }
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*SKILL*/
-
-    
-        
-        .progImageContainer{
-            width: 140px;
-            height: 140px; 
-        }
-        .progImageContainer img{
-            padding: 5px 0px;
-            height: 100%;
-            width: 100%;
-            object-fit: contain;
-        }
-        .progName{
-            font-family: 'SourceCodePro_ExtraBold';
-            font-size: 20px;
-            color: var(--purple-color);
-        }
-    .softwareProficiency{
-        display: flex;
-        padding: 3%;
-        justify-content: space-evenly;
-    }
-        .softwareColumn{
-           padding: 0 2% 2% ;
-           width: 50%;
-           height: 100%;
-        }
-        .softwareSubTitle{
-            display: flex;
-        }
-            .subTitleHLine{
-                width: 15px;
-                height: 25px;
-                margin: 0 0 4% 0;
-                border-left: var(--purple-color) 3px solid;
-            }
-            .softwareSubTitle p{
-                font-family: 'SourceCodePro_ExtraBold';
-                font-size: 17.5px;
-                color: white;
-                
-            }
-            .softwareContent{
-                display: flex; 
-                flex-direction: row; 
-        
-            }
-            .software{
-                height: 180px;
-                width: 45%;
-                margin: 0 0 4% 5%;
-                border-left: var(--blue-color) 3px solid;
-                display: flex; 
-                flex-direction: column; 
-                align-items: center; 
-                justify-content: center; 
-            }      
-                .software img{
-                    padding: 5px 0px;
-                    height: 90%;
-                    width: 50%;
-                    object-fit: contain;
-                }
-                .software p{
-                    font-family: 'SourceCodePro_ExtraBold';
-                    font-size: 15px;
-                    color: var(--blue-color);
-                }
-                .graphicWeb{
-                    height: 480px; width: 100%;
-                }
-        .graphicDesignWebDev{
-            margin-left: 25px;
-            width: 100% - 25px;
-            border-radius: 30px;
-            background-color: #212225;
-            flex-wrap: spa
-        }
-        .graphicDesignWebDev .progContainer{
-            height: 150px;
-            width: 140px;
-            text-align: center;
-        }
-        .graphicDesignWebDev .progImageContainer{
-            height: 100px;
-            width: 100px;
-        }     
+     
 /*PROJECT*/
+
 .project{
-    height:100vh;
-    border: 2px  blue solid;
-    overflow-y: auto;
     width: 100vw;
+    padding: 30px;
+    font-family: var(--default-font-style);
 }
+    .project h2{
+        color: var(--purple-color);
+        font-family: var(--default-font-style-extrabold);
+        font-size: 30px;
+        text-align: center;
+        margin-bottom:10px;
+    }
+    .project .project-container{
+        border-top:5px var(--main-text-color) solid ;
+        border-bottom:5px var(--main-text-color) solid ;
+        width: 80%;
+        height: 500px;
+        margin: 0 auto;
+        display: flex;
+    }
+    
+   
+    .project .project-container .project-details {
+        width: 50%;
+        height: 100%;
+        box-sizing: border-box;
+    }
+    
+    .project .project-container .project-details .dets {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        box-sizing: border-box;
+        font-family: var(--default-font-style);
+        color: var(--main-text-color);
+        font-size: 12px;
+        text-align: center;
+    }
+    
+    .project .project-container .project-details .dets table {
+        width: 100%;
+        height: auto; /* Allows table to fit content height */
+        border-collapse: collapse;
+        table-layout: fixed; /* Ensures equal width for columns */
+    }
+    
+    .project .project-container .project-details .dets th, 
+    .project .project-container .project-details .dets td {
+        padding: 10px;
+        text-align: left;
+        vertical-align: middle; /* Aligns text vertically in the middle */
+        height: 100%; /* Ensures cells expand to fill the container */
+        width: 100%;
+    }
+    .project .project-container .project-details .dets th:nth-child(1),
+    .project .project-container .project-details .dets td:nth-child(1) {
+        width: 30%; /* Column 1 width */
+        text-align: e;
+    }
+
+    .project .project-container .project-details .dets th:nth-child(2),
+    .project .project-container .project-details .dets td:nth-child(2) {
+        width: 70%; /* Column 2 width */
+    }
+    .project .project-container .project-details .dets tr:nth-child(even) {
+    }
+    
+    .project .project-container .project-details .dets tr:hover {
+        background-color: var(--purple-color);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*CONTACT*/
 .contact{
@@ -753,12 +761,6 @@ button{
 }
 
 @media (max-width: 800px)  {
-        
-            
-    /*Home*/
-    
-     
-
     /*Skills*/
     .progContainer{
         width: 150px;
@@ -783,7 +785,35 @@ button{
     .softwareProficiency .progContainer{
         width: 110px;
     }
+    /* PROJECT
+    .project .project-container{
+        height: 500px;
+        margin: 0 auto;
+        display: flex;
+    }
+    .project .project-container{
+        border-top:none ;
+        border-bottom:none ;
+        height: 500px;
+        margin: 0 auto;
+        display: inline;
+    }
+
+    .project .project-container img{
+        width:100% ;
+        height: 250px;
+        border-top:5px var(--main-text-color) solid ;
+        border-bottom:5px var(--main-text-color) solid ;
+    }
     
+    .project .project-container .project-details{
+        width:100% ;
+        height: 250px;
+    }
+    .project .project-containe .project-details .dets{
+        color: var(--main-text-color);
+    } */
 }
+
 
 
